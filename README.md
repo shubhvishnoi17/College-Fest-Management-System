@@ -118,5 +118,4 @@ This project was developed as a team effort:
 
 ## Conclusion
 This project demonstrates the practical use of Java Swing, event handling,
-validation techniques, and clean coding practices. It fulfills all the
-requirements specified for Review 2.
+validation techniques, and clean coding practices.
