@@ -1,95 +1,122 @@
-# College-Fest-Management-System
+# College Fest Management System
 
-Streamlined platform for organizing fests
+## Overview
+College Fest Management System is a Java-based desktop application developed to
+manage college fest activities such as events, participants, and volunteers.
+The project provides a simple and interactive GUI using Java Swing and follows
+a modular and structured coding approach.
 
-This project is a desktop application built using Java Swing to help manage the different activities of a college fest.  
-We wanted to create something simple, clean, and easy to use so that anyone in the cultural or technical team can operate it without confusion.
-
----
-
-## 👥 Team Members
-- **Shubh Vishnoi — Team Leader**  
-- **Sudhanshu Raj**  
-- **Prakash Kumar**
+This project was initially submitted in Review 1 and further improved in Review 2
+to enhance validation, robustness, code quality, and user interaction.
 
 ---
 
-## 🎯 Project Overview
-
-College fests involve a lot of work happening at the same time—event creation, participant registration, managing volunteers, and more.  
-To make this easier, we created a system that brings everything together in one interface.
-
-### ✔ Event Management
-Add events with their venue and date, view all events in a list, and delete any event when required.
-
-### ✔ Participant Registration
-Register students for specific events and store their year of study.  
-All participants appear in a clean list so it's easy to manage.
-
-### ✔ Volunteer Management
-Add volunteers along with their department and manage the volunteer list with ease.
-
-### ✔ User-Friendly Interface
-The UI has a blue-white color theme, neat spacing, and tabs for quick navigation.  
-The goal was to make it look modern without being complicated.
+## Features
+- Add and manage college fest events
+- Register participants for different events
+- Add and manage volunteers
+- Dashboard view for quick navigation
+- Tab-based user interface for better usability
+- Confirmation dialogs for delete operations
+- Duplicate entry prevention for events
 
 ---
 
-## 🛠 Technologies Used
-- Java (JDK 8 or above)  
-- Java Swing  
-- ArrayList  
-- Basic Object-Oriented Programming concepts  
+## Technologies Used
+- Java
+- Java Swing (GUI)
+- AWT
+- Collections Framework (ArrayList)
 
 ---
 
-## 📁 Project Structure
-```
-College-Fest-Management-System/
+## Project Structure
+# College Fest Management System
+
+## Overview
+College Fest Management System is a Java-based desktop application developed to
+manage college fest activities such as events, participants, and volunteers.
+The project provides a simple and interactive GUI using Java Swing and follows
+a modular and structured coding approach.
+
+This project was initially submitted in Review 1 and further improved in Review 2
+to enhance validation, robustness, code quality, and user interaction.
+
+---
+
+## Features
+- Add and manage college fest events
+- Register participants for different events
+- Add and manage volunteers
+- Dashboard view for quick navigation
+- Tab-based user interface for better usability
+- Confirmation dialogs for delete operations
+- Duplicate entry prevention for events
+
+---
+
+## Technologies Used
+- Java
+- Java Swing (GUI)
+- AWT
+- Collections Framework (ArrayList)
+
+---
+
+## Project Structure
+CollegeFestManagement/
+│
 ├── CollegeFestApp.java
+├── Event.java
+├── Participant.java
+├── Volunteer.java
 └── README.md
-```
+
 
 ---
 
-## ▶️ How to Run the Project
-
-1. Save the main file as:
-   ```
-   CollegeFestApp.java
-   ```
-
-2. Open a terminal in the project folder and compile:
-   ```bash
-   javac CollegeFestApp.java
-   ```
-
-3. Run the program:
-   ```bash
-   java CollegeFestApp
-   ```
-
-The application window will open and you can start managing the fest right away.
+## Code Quality & Validation
+- Input validation is implemented for all forms
+- Empty input fields are restricted
+- Duplicate events are prevented
+- Error messages are shown using dialog boxes
+- Confirmation dialogs are used before delete actions
 
 ---
 
-## 🚀 Future Improvements
-
-There are several enhancements we may add later:
-- Admin login system  
-- Saving all data permanently (files or database)  
-- Search and sorting options  
-- MySQL connectivity  
-- Printable certificates  
-- Event schedule calendar  
-- Dark/Light mode  
+## Testing
+- Application was tested with empty inputs
+- Duplicate event entries were tested
+- Delete actions were tested with and without selection
+- Application handles invalid operations without crashing
 
 ---
 
-## 🙏 Acknowledgment
+## Innovation / Extra Effort
+- Improved user interaction using dialog-based feedback
+- Added confirmation dialogs for safe deletion
+- Prevented duplicate event entries
+- Enhanced UI readability and usability
 
-This project was created as part of our academic work.  
-We hope it helps others who want to learn Java Swing or build something similar for their fest.
+---
 
-Feel free to use it, modify it, or improve it further!
+## Teamwork & Collaboration
+This project was developed as a team effort:
 
+- **Shubh Vishnoi (Team Leader):** Core logic, GUI design, integration, validation
+- **Sudhanshu Raj:** UI styling and layout support
+- **Prakash Kumar:** Testing, documentation, and validation support
+
+---
+
+## How to Run
+1. Open the project in any Java-supported IDE (IntelliJ / Eclipse / NetBeans)
+2. Compile and run `CollegeFestApp.java`
+3. The application will open as a desktop window
+
+---
+
+## Conclusion
+This project demonstrates the practical use of Java Swing, event handling,
+validation techniques, and clean coding practices. It fulfills all the
+requirements specified for Review 2.
