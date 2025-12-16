@@ -1,25 +1,41 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 
 class Event {
     String name, venue, date;
-    Event(String n, String v, String d) { name = n; venue = v; date = d; }
-    public String toString() { return name + " | " + venue + " | " + date; }
+    Event(String n, String v, String d) {
+        name = n;
+        venue = v;
+        date = d;
+    }
+    public String toString() {
+        return name + " | " + venue + " | " + date;
+    }
 }
 
 class Participant {
     String name, event, year;
-    Participant(String n, String e, String y) { name = n; event = e; year = y; }
-    public String toString() { return name + " | " + year + " | " + event; }
+    Participant(String n, String e, String y) {
+        name = n;
+        event = e;
+        year = y;
+    }
+    public String toString() {
+        return name + " | " + year + " | " + event;
+    }
 }
 
 class Volunteer {
     String name, dept;
-    Volunteer(String n, String d) { name = n; dept = d; }
-    public String toString() { return name + " | " + dept; }
+    Volunteer(String n, String d) {
+        name = n;
+        dept = d;
+    }
+    public String toString() {
+        return name + " | " + dept;
+    }
 }
 
 public class CollegeFestApp extends JFrame {
@@ -34,24 +50,23 @@ public class CollegeFestApp extends JFrame {
 
     Color headerColor = new Color(30, 136, 229);
     Color bgColor = new Color(240, 248, 255);
-    Font titleFont = new Font("Arial", Font.BOLD, 22);
     Font labelFont = new Font("Arial", Font.PLAIN, 16);
 
     public CollegeFestApp() {
 
         setTitle("College Fest Management System");
-        setSize(780, 600);
+        setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(bgColor);
 
         JTabbedPane tabs = new JTabbedPane();
-        tabs.setFont(new Font("Arial", Font.BOLD, 16));
+        tabs.setFont(new Font("Arial", Font.BOLD, 15));
 
-        tabs.add("🏠 Dashboard", dashboardPanel());
-        tabs.add("📅 Events", eventPanel());
-        tabs.add("🧑‍🎓 Participants", participantPanel());
-        tabs.add("🤝 Volunteers", volunteerPanel());
+        tabs.add("Dashboard", dashboardPanel());
+        tabs.add("Events", eventPanel());
+        tabs.add("Participants", participantPanel());
+        tabs.add("Volunteers", volunteerPanel());
 
         add(tabs);
         setVisible(true);
@@ -64,30 +79,22 @@ public class CollegeFestApp extends JFrame {
         JLabel title = new JLabel("COLLEGE FEST MANAGEMENT SYSTEM", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 26));
         title.setForeground(headerColor);
-        title.setBorder(new EmptyBorder(40, 10, 10, 10));
+        title.setBorder(new EmptyBorder(30, 10, 10, 10));
 
-        JLabel info = new JLabel("<html><center>"
-                + "Manage Events<br>"
-                + "Register Participants<br>"
-                + "Add Volunteers<br>"
-                + "Schedule & Organize Your College Fest Efficiently"
-                + "</center></html>", SwingConstants.CENTER);
+        JLabel info = new JLabel(
+                "<html><center>Manage Events<br>Register Participants<br>Add Volunteers</center></html>",
+                SwingConstants.CENTER
+        );
         info.setFont(new Font("Arial", Font.PLAIN, 18));
 
-        JLabel madeBy = new JLabel("<html><center>"
-                + "<br><br><b>Made By:</b><br>"
-                + "Shubh Vishnoi (Team Leader)<br>"
-                + "Sudhanshu Raj<br>"
-                + "Prakash Kumar"
-                + "</center></html>", SwingConstants.CENTER);
-
-        madeBy.setFont(new Font("Arial", Font.BOLD, 17));
-        madeBy.setForeground(new Color(0, 60, 120));
+        JLabel madeBy = new JLabel(
+                "<html><center><br><b>Made By</b><br>Shubh Vishnoi (Team Leader)<br>Sudhanshu Raj<br>Prakash Kumar</center></html>",
+                SwingConstants.CENTER
+        );
 
         p.add(title, BorderLayout.NORTH);
         p.add(info, BorderLayout.CENTER);
         p.add(madeBy, BorderLayout.SOUTH);
-
         return p;
     }
 
@@ -95,56 +102,55 @@ public class CollegeFestApp extends JFrame {
         JPanel p = new JPanel(new BorderLayout());
         p.setBackground(bgColor);
 
-        JPanel form = new JPanel(new GridLayout(4, 2, 10, 10));
-        form.setBorder(new EmptyBorder(20, 20, 20, 20));
-        form.setBackground(bgColor);
-
         JTextField en = new JTextField();
         JTextField ev = new JTextField();
         JTextField ed = new JTextField();
 
         JButton add = new JButton("Add Event");
         add.setBackground(headerColor);
-        add.setForeground(Color.white);
-        add.setFont(labelFont);
+        add.setForeground(Color.WHITE);
 
-        form.add(new JLabel("Event Name:")); form.add(en);
-        form.add(new JLabel("Venue:")); form.add(ev);
-        form.add(new JLabel("Date (DD/MM/YY):")); form.add(ed);
-        form.add(add);
-
-        JList<String> list = new JList<>(eventModel);
-        list.setFont(labelFont);
-
-        JButton delete = new JButton("Delete Selected");
-        delete.setBackground(new Color(244, 67, 54));
-        delete.setForeground(Color.white);
-        delete.setFont(labelFont);
-
-        JPanel bottom = new JPanel();
-        bottom.setBackground(bgColor);
-        bottom.add(delete);
-
-        add.addActionListener(a -> {
-            if (!en.getText().isEmpty() && !ev.getText().isEmpty() && !ed.getText().isEmpty()) {
-                events.add(new Event(en.getText(), ev.getText(), ed.getText()));
-                eventModel.addElement(en.getText() + " | " + ev.getText() + " | " + ed.getText());
-                en.setText(""); ev.setText(""); ed.setText("");
+        add.addActionListener(e -> {
+            if (en.getText().isEmpty() || ev.getText().isEmpty() || ed.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "All fields are required");
+                return;
             }
+            for (Event event : events) {
+                if (event.name.equalsIgnoreCase(en.getText())) {
+                    JOptionPane.showMessageDialog(this, "Event already exists");
+                    return;
+                }
+            }
+            Event event = new Event(en.getText(), ev.getText(), ed.getText());
+            events.add(event);
+            eventModel.addElement(event.toString());
+            en.setText(""); ev.setText(""); ed.setText("");
         });
 
-        delete.addActionListener(a -> {
+        JList<String> list = new JList<>(eventModel);
+
+        JButton delete = new JButton("Delete");
+        delete.addActionListener(e -> {
             int idx = list.getSelectedIndex();
-            if (idx != -1) {
+            if (idx == -1) return;
+            int c = JOptionPane.showConfirmDialog(this, "Delete selected event?");
+            if (c == 0) {
                 events.remove(idx);
                 eventModel.remove(idx);
             }
         });
 
+        JPanel form = new JPanel(new GridLayout(4,2,10,10));
+        form.setBorder(new EmptyBorder(20,20,20,20));
+        form.setBackground(bgColor);
+        form.add(new JLabel("Event Name")); form.add(en);
+        form.add(new JLabel("Venue")); form.add(ev);
+        form.add(new JLabel("Date")); form.add(ed);
+        form.add(add);
+
         p.add(form, BorderLayout.NORTH);
         p.add(new JScrollPane(list), BorderLayout.CENTER);
-        p.add(bottom, BorderLayout.SOUTH);
-
+        p.add(delete, BorderLayout.SOUTH);
         return p;
     }
 
@@ -152,43 +158,26 @@ public class CollegeFestApp extends JFrame {
         JPanel p = new JPanel(new BorderLayout());
         p.setBackground(bgColor);
 
-        JPanel form = new JPanel(new GridLayout(4, 2, 10, 10));
-        form.setBorder(new EmptyBorder(20, 20, 20, 20));
-        form.setBackground(bgColor);
-
         JTextField pn = new JTextField();
-        JTextField pe = new JTextField();
         JTextField py = new JTextField();
+        JTextField pe = new JTextField();
 
-        JButton add = new JButton("Register Participant");
-        add.setBackground(headerColor);
-        add.setForeground(Color.white);
-
-        form.add(new JLabel("Participant Name:")); form.add(pn);
-        form.add(new JLabel("Event Name:")); form.add(pe);
-        form.add(new JLabel("Year:")); form.add(py);
-        form.add(add);
-
-        JList<String> list = new JList<>(partModel);
-        list.setFont(labelFont);
-
-        JButton delete = new JButton("Delete Selected");
-        delete.setBackground(new Color(244, 67, 54));
-        delete.setForeground(Color.white);
-
-        JPanel bottom = new JPanel();
-        bottom.setBackground(bgColor);
-        bottom.add(delete);
-
-        add.addActionListener(a -> {
-            if (!pn.getText().isEmpty() && !pe.getText().isEmpty() && !py.getText().isEmpty()) {
-                participants.add(new Participant(pn.getText(), pe.getText(), py.getText()));
-                partModel.addElement(pn.getText() + " | " + py.getText() + " | " + pe.getText());
-                pn.setText(""); pe.setText(""); py.setText("");
+        JButton add = new JButton("Register");
+        add.addActionListener(e -> {
+            if (pn.getText().isEmpty() || py.getText().isEmpty() || pe.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "All fields required");
+                return;
             }
+            Participant pt = new Participant(pn.getText(), pe.getText(), py.getText());
+            participants.add(pt);
+            partModel.addElement(pt.toString());
+            pn.setText(""); py.setText(""); pe.setText("");
         });
 
-        delete.addActionListener(a -> {
+        JList<String> list = new JList<>(partModel);
+
+        JButton delete = new JButton("Delete");
+        delete.addActionListener(e -> {
             int idx = list.getSelectedIndex();
             if (idx != -1) {
                 participants.remove(idx);
@@ -196,10 +185,17 @@ public class CollegeFestApp extends JFrame {
             }
         });
 
+        JPanel form = new JPanel(new GridLayout(4,2,10,10));
+        form.setBorder(new EmptyBorder(20,20,20,20));
+        form.setBackground(bgColor);
+        form.add(new JLabel("Name")); form.add(pn);
+        form.add(new JLabel("Year")); form.add(py);
+        form.add(new JLabel("Event")); form.add(pe);
+        form.add(add);
+
         p.add(form, BorderLayout.NORTH);
         p.add(new JScrollPane(list), BorderLayout.CENTER);
-        p.add(bottom, BorderLayout.SOUTH);
-
+        p.add(delete, BorderLayout.SOUTH);
         return p;
     }
 
@@ -207,41 +203,25 @@ public class CollegeFestApp extends JFrame {
         JPanel p = new JPanel(new BorderLayout());
         p.setBackground(bgColor);
 
-        JPanel form = new JPanel(new GridLayout(3, 2, 10, 10));
-        form.setBorder(new EmptyBorder(20, 20, 20, 20));
-        form.setBackground(bgColor);
-
         JTextField vn = new JTextField();
         JTextField vd = new JTextField();
 
-        JButton add = new JButton("Add Volunteer");
-        add.setBackground(headerColor);
-        add.setForeground(Color.white);
-
-        form.add(new JLabel("Volunteer Name:")); form.add(vn);
-        form.add(new JLabel("Department:")); form.add(vd);
-        form.add(add);
-
-        JList<String> list = new JList<>(volModel);
-        list.setFont(labelFont);
-
-        JButton delete = new JButton("Delete Selected");
-        delete.setBackground(new Color(244, 67, 54));
-        delete.setForeground(Color.white);
-
-        JPanel bottom = new JPanel();
-        bottom.setBackground(bgColor);
-        bottom.add(delete);
-
-        add.addActionListener(a -> {
-            if (!vn.getText().isEmpty() && !vd.getText().isEmpty()) {
-                volunteers.add(new Volunteer(vn.getText(), vd.getText()));
-                volModel.addElement(vn.getText() + " | " + vd.getText());
-                vn.setText(""); vd.setText("");
+        JButton add = new JButton("Add");
+        add.addActionListener(e -> {
+            if (vn.getText().isEmpty() || vd.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "All fields required");
+                return;
             }
+            Volunteer v = new Volunteer(vn.getText(), vd.getText());
+            volunteers.add(v);
+            volModel.addElement(v.toString());
+            vn.setText(""); vd.setText("");
         });
 
-        delete.addActionListener(a -> {
+        JList<String> list = new JList<>(volModel);
+
+        JButton delete = new JButton("Delete");
+        delete.addActionListener(e -> {
             int idx = list.getSelectedIndex();
             if (idx != -1) {
                 volunteers.remove(idx);
@@ -249,10 +229,16 @@ public class CollegeFestApp extends JFrame {
             }
         });
 
+        JPanel form = new JPanel(new GridLayout(3,2,10,10));
+        form.setBorder(new EmptyBorder(20,20,20,20));
+        form.setBackground(bgColor);
+        form.add(new JLabel("Name")); form.add(vn);
+        form.add(new JLabel("Department")); form.add(vd);
+        form.add(add);
+
         p.add(form, BorderLayout.NORTH);
         p.add(new JScrollPane(list), BorderLayout.CENTER);
-        p.add(bottom, BorderLayout.SOUTH);
-
+        p.add(delete, BorderLayout.SOUTH);
         return p;
     }
 
