@@ -113,6 +113,70 @@ This project was developed as a team effort:
 1. Open the project in any Java-supported IDE (IntelliJ / Eclipse / NetBeans)
 2. Compile and run `CollegeFestApp.java`
 3. The application will open as a desktop window
+4. 
+## How to Deploy Servlet Web Application
+
+### Prerequisites
+- Apache Tomcat 9.0 or higher
+- JDK 8 or higher
+- Servlet API JAR
+
+### Deployment Steps
+
+1. **Compile Servlet Files**
+   ```bash
+   cd src/com/collegefest/servlet
+   javac -cp "path/to/servlet-api.jar" *.java
+   ```
+
+2. **Create Directory Structure**
+   ```
+   CollegeFestApp/
+   ├── index.html
+   ├── events.html
+   ├── participants.html
+   ├── volunteers.html
+   ├── css/
+   │   └── style.css
+   └── WEB-INF/
+       ├── web.xml
+       └── classes/
+           └── com/
+               └── collegefest/
+                   └── servlet/
+                       ├── EventServlet.class
+                       ├── ParticipantServlet.class
+                       └── VolunteerServlet.class
+   ```
+
+3. **Deploy to Tomcat**
+   - Copy entire `webapp` folder to `tomcat/webapps/CollegeFestApp`
+   - Ensure compiled `.class` files are in `WEB-INF/classes/com/collegefest/servlet/`
+
+4. **Start Tomcat Server**
+   - Windows: Run `tomcat/bin/startup.bat`
+   - Linux/Mac: Run `tomcat/bin/startup.sh`
+
+5. **Access Application**
+   - Open browser: `http://localhost:8080/CollegeFestApp/`
+   - Navigate between Events, Participants, and Volunteers pages
+
+### Testing Servlet Features
+
+1. **Test Event Management**
+   - Add new event with all details
+   - Try adding duplicate event (should show error)
+   - Submit empty form (should show validation error)
+
+2. **Test Participant Registration**
+   - Register participant for an event
+   - Check success message
+   - Test with empty fields
+
+3. **Test Volunteer Addition**
+   - Add volunteer with department
+   - Verify success feedback
+   - Test validation
 
 ---
 
