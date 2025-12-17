@@ -7,28 +7,92 @@
 
 body body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    background-attachment: fixed;
     min-height: 100vh;
-    color: #2c3e50;
+    color: #ffffff;
     line-height: 1.6;
     padding: 20px;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* Container */
-.container {{
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+/* Animated Background Pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 106, 211, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(72, 209, 204, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 0% 0%, rgba(148, 0, 211, 0.2) 0%, transparent 50%);
+    animation: backgroundMove 15s ease-in-out infinite;
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* Header Styles */
+@keyframes backgroundMove {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1) rotate(5deg);
+    }
 h1 {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 35px 25px;
-    margin: 0 0 30px 0;
+    background: linear-gradient(135deg, #ff006e, #8338ec, #3a86ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 40px 30px;
+    margin: 0 0 40px 0;
     text-align: center;
-    font-size: 2.8em;
+    font-size: 3.5em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    animation: slideDown 0.8s ease-out, neonPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.8)) 
+            drop-shadow(0 0 40px rgba(131, 56, 236, 0.6))
+            drop-shadow(0 0 60px rgba(58, 134, 255, 0.4));
+}
+
+h1::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff006e, #8338ec, #3a86ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(20px);
+    opacity: 0.7;
+    z-index: -1;
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.8)) 
+                drop-shadow(0 0 40px rgba(131, 56, 236, 0.6))
+                drop-shadow(0 0 60px rgba(58, 134, 255, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px rgba(255, 0, 110, 1)) 
+                drop-shadow(0 0 60px rgba(131, 56, 236, 0.8))
+                drop-shadow(0 0 90px rgba(58, 134, 255, 0.6));
+    }
+}    font-size: 2.8em;
     font-weight: 700;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
     border-radius: 15px;
@@ -256,19 +320,28 @@ tr:last-child td {
 
 /* Paragraph Styles */
 p {
-    padding: 15px 0;
+    padding: 20px 25px;
     font-size: 18px;
-    color: #34495e;
-    line-height: 1.8;
+    color: #ffffff;
+    line-height: 1.9;
     font-weight: 400;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin: 15px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}}
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transition: all 0.3s ease;
+}
 
-/* List Styles */
+p:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 106, 211, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(255, 106, 211, 0.3),
+                0 0 15px rgba(131, 56, 236, 0.2);
+    transform: translateY(-2px);
+}/* List Styles */
 ul:not(nav ul) {
     list-style: none;
     padding-left: 0;
