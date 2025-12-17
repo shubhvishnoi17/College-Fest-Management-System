@@ -5,34 +5,36 @@
     box-sizing: border-box;
 }
 
-body {
+body body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     min-height: 100vh;
-    color: #333;
+    color: #2c3e50;
     line-height: 1.6;
+    padding: 20px;
 }
 
 /* Container */
-.container {
+.container {{
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
 /* Header Styles */
-header {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-}
-
 h1 {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+    padding: 35px 25px;
+    margin: 0 0 30px 0;
+    text-align: center;
+    font-size: 2.8em;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    animation: slideDown 0.5s ease-out;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}    color: white;
     padding: 30px 20px;
     margin: 0;
     text-align: center;
@@ -255,10 +257,16 @@ tr:last-child td {
 /* Paragraph Styles */
 p {
     padding: 15px 0;
-    font-size: 16px;
-    color: #555;
+    font-size: 18px;
+    color: #34495e;
     line-height: 1.8;
-}
+    font-weight: 400;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}}
 
 /* List Styles */
 ul:not(nav ul) {
